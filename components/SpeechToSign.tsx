@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { textToSignImage } from '../services/geminiService';
 import Spinner from './Spinner';
@@ -33,7 +32,11 @@ const SpeechToSign: React.FC = () => {
 
         recognition.onerror = (event: any) => {
             console.error('Speech recognition error', event.error);
-            setError(`Speech recognition error: ${event.error}`);
+            if (event.error === 'no-speech') {
+                setError("Sorry, I didn't catch that. Please try speaking again.");
+            } else {
+                setError(`Speech recognition error: ${event.error}`);
+            }
             setIsListening(false);
         };
 
@@ -46,15 +49,20 @@ const SpeechToSign: React.FC = () => {
     }, []);
 
     const handleListen = () => {
-        if (isListening || !recognitionRef.current) {
-            recognitionRef.current.stop();
+        if (!recognitionRef.current) {
+            setError('Speech recognition is not supported in this browser.');
             return;
         }
-        setTranscribedText('');
-        setSignImageUrl(null);
-        setError('');
-        setIsListening(true);
-        recognitionRef.current.start();
+
+        if (isListening) {
+            recognitionRef.current.stop();
+        } else {
+            setTranscribedText('');
+            setSignImageUrl(null);
+            setError('');
+            setIsListening(true);
+            recognitionRef.current.start();
+        }
     };
 
     const generateSign = async (text: string) => {
