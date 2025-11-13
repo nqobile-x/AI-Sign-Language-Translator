@@ -17,7 +17,7 @@
 
 ---
 
-## 🎯 What It Does
+##  What It Does
 
 ```
 Sign Language Gestures → AI Vision Analysis → Speech/Text Output
@@ -155,7 +155,7 @@ SPEECH_API_KEY=your_speech_api_key (if needed)
 
 ---
 
-## 🎨 Key Features in Detail
+##  Key Features in Detail
 
 ### 1. **Real-Time Sign Detection**
 - Captures video frames at 30fps
@@ -179,7 +179,7 @@ SPEECH_API_KEY=your_speech_api_key (if needed)
 
 ---
 
-## 🚧 Current Limitations
+##  Current Limitations
 
 - Sign language vocabulary coverage varies
 - Lighting conditions affect detection accuracy
