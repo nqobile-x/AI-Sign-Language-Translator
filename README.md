@@ -2,7 +2,7 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# 🤟 AI Sign Language Translator
+#  AI Sign Language Translator
 ### Real-Time Communication Bridge for Deaf & Hearing Communities
 
 
@@ -28,20 +28,20 @@ Speech/Text Input → AI Processing → Sign Language Animation
 
 ---
 
-## 📊 Core Features
+##  Core Features
 
 | Feature | Description |
 |---------|-------------|
-| 🎥 **Sign to Speech** | Translates sign language gestures into spoken words |
-| 📝 **Sign to Text** | Converts signs to written text on screen |
-| 🗣️ **Speech to Sign** | Translates spoken language into sign language animations |
-| ⚡ **Real-Time** | Processes video feed with minimal latency |
-| 🌍 **Multi-Language** | Supports ASL, BSL, and other sign languages |
-| 📱 **Camera-Based** | Works with standard webcam or phone camera |
+|  **Sign to Speech** | Translates sign language gestures into spoken words |
+|  **Sign to Text** | Converts signs to written text on screen |
+|  **Speech to Sign** | Translates spoken language into sign language animations |
+|  **Real-Time** | Processes video feed with minimal latency |
+|  **Multi-Language** | Supports ASL, BSL, and other sign languages |
+|  **Camera-Based** | Works with standard webcam or phone camera |
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 **AI/ML:** Google Gemini Vision AI • Computer Vision  
 **Frontend:** React • Web Speech API • Video Processing  
@@ -50,7 +50,7 @@ Speech/Text Input → AI Processing → Sign Language Animation
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Run Locally:
 
@@ -70,11 +70,11 @@ npm start
 
 ### Try in AI Studio:
 
-⚡ **Open in Google AI Studio:** [Launch App](https://ai.studio/apps/drive/18WwjCwZbUikMn900l0oD7HFd-vqK1YHw)
+ **Open in Google AI Studio:** [Launch App](https://ai.studio/apps/drive/18WwjCwZbUikMn900l0oD7HFd-vqK1YHw)
 
 ---
 
-## 💡 How It Works
+##  How It Works
 
 ### Sign Language to Speech/Text:
 1. User performs sign language gestures in front of camera
@@ -92,18 +92,18 @@ npm start
 
 ---
 
-## 🎯 Use Cases
+##  Use Cases
 
-✅ **Conversations** - Enable real-time dialogue between deaf and hearing individuals  
-✅ **Education** - Learn sign language with instant feedback  
-✅ **Accessibility** - Make public spaces more inclusive  
-✅ **Emergency Services** - Critical communication in urgent situations  
-✅ **Customer Service** - Better serve deaf customers  
-✅ **Video Calls** - Add sign language translation to video meetings  
+ **Conversations** - Enable real-time dialogue between deaf and hearing individuals  
+ **Education** - Learn sign language with instant feedback  
+ **Accessibility** - Make public spaces more inclusive  
+ **Emergency Services** - Critical communication in urgent situations  
+ **Customer Service** - Better serve deaf customers  
+ **Video Calls** - Add sign language translation to video meetings  
 
 ---
 
-## 📈 Impact Potential
+##  Impact Potential
 
 **70 Million Deaf People Worldwide:**
 - 466 million people with hearing loss globally (WHO)
@@ -119,7 +119,7 @@ npm start
 
 ---
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 sign-language-translator/
@@ -141,7 +141,7 @@ sign-language-translator/
 
 ---
 
-## 🔧 Configuration
+##  Configuration
 
 ### Environment Variables:
 ```bash
@@ -189,20 +189,20 @@ SPEECH_API_KEY=your_speech_api_key (if needed)
 
 ---
 
-## 🗺️ Roadmap
+##  Roadmap
 
 **Current Version:**
-- ✅ Basic sign-to-text translation
-- ✅ Text-to-speech output
-- ✅ Speech-to-text input
-- ✅ Real-time video processing
+-  Basic sign-to-text translation
+-  Text-to-speech output
+-  Speech-to-text input
+-  Real-time video processing
 
 
  
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions welcome! This project aims to improve accessibility for deaf and hard-of-hearing communities.
 
@@ -220,7 +220,7 @@ MIT License - Open source for accessibility
 
 ---
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - **Deaf community** - Feedback and testing
 - **Google** - Gemini Vision AI API
@@ -231,11 +231,10 @@ MIT License - Open source for accessibility
 
 <div align="center">
 
-### 💼 Available for collaboration and feedback
+###  Available for collaboration and feedback
 
 **Bridging communication gaps, one sign at a time.**
 
-[📧 Contact](mailto:yourname@email.com) • [💻 GitHub](https://github.com/yourusername) • [💬 LinkedIn](https://linkedin.com/in/yourname)
 
 </div>
 
