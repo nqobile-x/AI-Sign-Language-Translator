@@ -1,0 +1,8 @@
+{
+  "name": "Sign Language Translator",
+  "description": "A real-time sign language translator using Gemini. Translate sign language from images and videos to speech, and translate speech to sign language animations.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
