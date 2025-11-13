@@ -214,7 +214,7 @@ Contributions welcome! This project aims to improve accessibility for deaf and h
 
 ---
 
-## 📄 License
+##  License
 
 MIT License - Open source for accessibility
 
