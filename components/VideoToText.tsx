@@ -1,7 +1,7 @@
 
 import React, { useState, useRef } from 'react';
 import { analyzeVideo } from '../services/geminiService';
-import { fileToDataUrl } from '../utils/helpers';
+import { fileToDataUrl, extractFrames } from '../utils/helpers';
 import Spinner from './Spinner';
 
 const VideoToText: React.FC = () => {
@@ -24,47 +24,6 @@ const VideoToText: React.FC = () => {
         }
     };
 
-    const extractFrames = (): Promise<{ base64: string; mimeType: string }[]> => {
-        return new Promise((resolve) => {
-            if (!videoRef.current || !canvasRef.current) return resolve([]);
-            
-            const video = videoRef.current;
-            const canvas = canvasRef.current;
-            const context = canvas.getContext('2d');
-            const frames: { base64: string; mimeType: string }[] = [];
-            const interval = 0.5; // seconds, 2 frames per second
-            
-            video.currentTime = 0;
-            
-            video.onseeked = () => {
-                if (!context) return;
-                
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-                const dataUrl = canvas.toDataURL('image/jpeg');
-                frames.push({
-                    base64: dataUrl.split(',')[1],
-                    mimeType: 'image/jpeg'
-                });
-
-                if (video.currentTime < video.duration) {
-                    video.currentTime += interval;
-                } else {
-                    resolve(frames);
-                }
-            };
-            
-            video.onloadedmetadata = () => {
-                video.currentTime = 0.1; // Start seeking
-            };
-
-            if (video.readyState >= 1) { // METADATA_LOADED or more
-                 video.currentTime = 0.1;
-            }
-        });
-    };
-
     const handleSubmit = async () => {
         if (!file) {
             setError('Please select a video file.');
@@ -75,7 +34,12 @@ const VideoToText: React.FC = () => {
         setTranslatedText('');
 
         try {
-            const frames = await extractFrames();
+            if (!videoRef.current || !canvasRef.current) {
+                setError('Video or canvas element not found.');
+                setIsLoading(false);
+                return;
+            }
+            const frames = await extractFrames(videoRef.current, canvasRef.current);
             if (frames.length === 0) {
                 setError('Could not extract frames from the video.');
                 setIsLoading(false);
@@ -93,7 +57,11 @@ const VideoToText: React.FC = () => {
 
     return (
         <div className="space-y-6">
-            <p className="text-center text-gray-400">Upload a short video (under 10 seconds recommended) of sign language for translation.</p>
+            <div className="text-center mb-4">
+                 <h2 className="text-2xl font-bold text-blue-300">Video Understanding</h2>
+                 <p className="text-gray-400 mt-2">Upload a video of sign language (or any content) for advanced analysis using Gemini 1.5 Pro.</p>
+            </div>
+           
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                 <div className="flex flex-col items-center space-y-4">
                     <div className="w-full aspect-video bg-gray-700 rounded-lg overflow-hidden flex items-center justify-center border-2 border-dashed border-gray-600">
@@ -116,14 +84,14 @@ const VideoToText: React.FC = () => {
                         disabled={isLoading || !file}
                         className="w-full py-3 px-4 bg-green-600 hover:bg-green-700 disabled:bg-gray-500 disabled:cursor-not-allowed rounded-lg font-bold text-lg transition-colors duration-300"
                     >
-                        {isLoading ? 'Analyzing Video...' : 'Translate Video'}
+                        {isLoading ? 'Analyzing Video...' : 'Analyze Video'}
                     </button>
                     {error && <p className="text-red-400 text-center">{error}</p>}
-                    {isLoading && <Spinner message="Analyzing video... this may take a moment." />}
+                    {isLoading && <Spinner message="Analyzing video frames... This uses the advanced Pro model." />}
                     {translatedText && (
                         <div className="bg-gray-700/50 p-4 rounded-lg">
-                            <h3 className="text-lg font-semibold text-blue-300">Translation:</h3>
-                            <p className="text-2xl font-mono p-4 bg-gray-900 rounded-md">{translatedText}</p>
+                            <h3 className="text-lg font-semibold text-blue-300">Analysis Result:</h3>
+                            <p className="text-lg font-mono p-4 bg-gray-900 rounded-md whitespace-pre-wrap">{translatedText}</p>
                         </div>
                     )}
                 </div>

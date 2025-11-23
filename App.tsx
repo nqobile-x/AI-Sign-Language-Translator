@@ -5,7 +5,9 @@ import Tabs from './components/Tabs';
 import SignToSpeech from './components/SignToSpeech';
 import VideoToText from './components/VideoToText';
 import SpeechToSign from './components/SpeechToSign';
-import { DocumentScannerIcon, VideoLibraryIcon, AudioSparkIcon } from './components/IconComponents';
+import RealTimeSign from './components/RealTimeSign';
+import VideoGenerator from './components/VideoGenerator';
+import { DocumentScannerIcon, VideoLibraryIcon, AudioSparkIcon, LiveTvIcon, VideoSparkIcon } from './components/IconComponents';
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>(Tab.SignToSpeech);
@@ -18,6 +20,10 @@ const App: React.FC = () => {
         return <VideoToText />;
       case Tab.SpeechToSign:
         return <SpeechToSign />;
+      case Tab.RealTime:
+        return <RealTimeSign />;
+      case Tab.VideoGeneration:
+        return <VideoGenerator />;
       default:
         return <SignToSpeech />;
     }
@@ -25,8 +31,10 @@ const App: React.FC = () => {
 
   const tabs = [
     { id: Tab.SignToSpeech, label: 'Sign to Speech', icon: <DocumentScannerIcon /> },
-    { id: Tab.VideoToText, label: 'Video to Text', icon: <VideoLibraryIcon /> },
+    { id: Tab.VideoToText, label: 'Video Understanding', icon: <VideoLibraryIcon /> },
+    { id: Tab.RealTime, label: 'Live Video', icon: <LiveTvIcon /> },
     { id: Tab.SpeechToSign, label: 'Speech to Sign', icon: <AudioSparkIcon /> },
+    { id: Tab.VideoGeneration, label: 'Generate Video', icon: <VideoSparkIcon /> },
   ];
 
   return (
@@ -40,10 +48,10 @@ const App: React.FC = () => {
       </header>
 
       <main className="flex-grow container mx-auto p-4 md:p-6 max-w-5xl">
-        <div className="mb-6">
+        <div className="mb-6 overflow-x-auto pb-2 custom-scrollbar">
           <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
-        <div className="bg-gray-800 rounded-2xl shadow-2xl p-4 md:p-8">
+        <div className="bg-gray-800 rounded-2xl shadow-2xl p-4 md:p-8 min-h-[500px]">
           {renderContent()}
         </div>
       </main>

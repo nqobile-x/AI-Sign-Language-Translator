@@ -63,7 +63,7 @@ export const analyzeVideo = async (frames: { base64: string; mimeType: string }[
             },
         }));
         const response = await ai.models.generateContent({
-            model: 'gemini-2.5-pro',
+            model: 'gemini-3-pro-preview',
             contents: { parts: [{ text: VIDEO_PROMPT }, ...frameParts] }
         });
         return response.text;
@@ -105,5 +105,36 @@ export const textToSignImage = async (text: string): Promise<string | null> => {
     } catch (error) {
         console.error("Error generating sign image:", error);
         return null;
+    }
+};
+
+export const generateWithVeo = async (prompt: string, aspectRatio: '16:9' | '9:16' = '16:9'): Promise<string | null> => {
+    try {
+        // Ensure we use the latest key when calling Veo
+        const currentAi = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        
+        let operation = await currentAi.models.generateVideos({
+            model: 'veo-3.1-fast-generate-preview',
+            prompt: prompt,
+            config: {
+                numberOfVideos: 1,
+                resolution: '1080p',
+                aspectRatio: aspectRatio
+            }
+        });
+
+        while (!operation.done) {
+            await new Promise(resolve => setTimeout(resolve, 5000));
+            operation = await currentAi.operations.getVideosOperation({ operation: operation });
+        }
+
+        const videoUri = operation.response?.generatedVideos?.[0]?.video?.uri;
+        if (videoUri) {
+            return `${videoUri}&key=${process.env.API_KEY}`;
+        }
+        return null;
+    } catch (error) {
+        console.error("Error generating video with Veo:", error);
+        throw error;
     }
 };
